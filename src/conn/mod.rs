@@ -395,10 +395,7 @@ impl Conn {
         let stream = if let Some(path) = opts.get_socket() {
             A(Stream::connect_socket(path.to_owned()))
         } else {
-            B(Stream::connect_tcp((
-                opts.get_ip_or_hostname(),
-                opts.get_tcp_port(),
-            )))
+            B(Stream::connect_tcp(opts.get_hostport_or_url()))
         };
 
         stream
